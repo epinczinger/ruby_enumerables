@@ -3,6 +3,7 @@ AllCops:
     - "Guardfile"
     - "Rakefile"
 
+  NewCops: enable
   DisplayCopNames: true
 
 Layout/LineLength:
