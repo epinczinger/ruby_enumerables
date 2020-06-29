@@ -14,7 +14,7 @@ module ::Enumerable
   # The method returns true if the block never returns false or nil.
   def my_all?(&block)
     my_each_with_index do |item, _index|
-      false if block.call(item) != true
+      return false if block.call(item) != true
     end
 
     true
@@ -28,4 +28,4 @@ end
 [9, 8, 7, 6, 5, 4, 3, 2, 1].my_each_with_index { |item, index| p([index, item]) }
 
 raise("#my_all 0-1 Failed") unless %w[ant bear cat].my_all? { |word| word.length >= 3 } == true
-raise("#my_all 0-1 Failed") unless %w[ant bear cat].all? { |word| word.length >= 4 } == false
+raise("#my_all 0-2 Failed") unless %w[ant bear cat].my_all? { |word| word.length >= 4 } == false
