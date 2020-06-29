@@ -4,6 +4,7 @@ AllCops:
     - "Rakefile"
 
   NewCops: enable
+  EnabledByDefault: true
   DisplayCopNames: true
 
 Layout/LineLength:
@@ -30,6 +31,8 @@ Style/DefWithParentheses:
   Enabled: false
 Style/FrozenStringLiteralComment:
   EnforcedStyle: never
+Style/Copyright:
+  Enabled: false
 
 Layout/HashAlignment:
   EnforcedColonStyle: key
