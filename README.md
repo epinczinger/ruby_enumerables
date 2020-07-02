@@ -5,12 +5,6 @@
 
 `rdebug-ide enumerables.rb`
 
-# Bubble Sort
-
-The aim of this project is to start learning about Ruby syntax.
-
-- The first method sort an array of numbers in ascending order.
-- The second method accepts a block and sort it by length using yield.
 
 ## Built With
 
