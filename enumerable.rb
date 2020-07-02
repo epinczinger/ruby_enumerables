@@ -30,7 +30,15 @@ module ::Enumerable
     true
   end
 
-  # def my_map end
+  # Returns a new array with the results of running block once for every element in enum.
+  def my_map(&block)
+    transformed =
+      my_each_with_index do |item, _index|
+        return block.call(item)
+      end
+
+    transformed
+  end
 
   # my_inject
 end
