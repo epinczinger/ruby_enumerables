@@ -20,12 +20,17 @@ module ::Enumerable
     true
   end
 
-  # def my_none?end
+  # Passes each element of the collection to the given block.
+  # The method returns true if the block never returns true for all elements.
+  def my_none?(&block)
+    my_each_with_index do |item, _index|
+      return false if block.call(item) == true
+    end
 
-  # def my_mapend
+    true
+  end
+
+  # def my_map end
+
+  # my_inject
 end
-
-[9, 8, 7, 6, 5, 4, 3, 2, 1].my_each_with_index { |item, index| p([index, item]) }
-
-raise("#my_all 0-1 Failed") unless %w[ant bear cat].my_all? { |word| word.length >= 3 } == true
-raise("#my_all 0-2 Failed") unless %w[ant bear cat].my_all? { |word| word.length >= 4 } == false
