@@ -3,11 +3,31 @@ module ::Enumerable
   # Esteban: 3, 5, 7, 9, 11
   # Daniel: 4, 6, 8, 10
 
+  
+  def my_each
+    return to_enum unless block_given?
+
+    length.times { |n| yield self[n] }
+    self
+  end
+
+
   # Loops, Calling The Block With Item And Index
   def my_each_with_index(&block)
     for index in 0...count
       block.call(self[index], index)
     end
+  end
+
+
+  def my_select
+    return to_enum unless block_given?
+
+    array = []
+    my_each do |n|
+      array << n if yield n
+    end
+    array
   end
 
   # Passes each element of the collection to the given block.

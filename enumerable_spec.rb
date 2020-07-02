@@ -12,3 +12,4 @@ raise("#my_none? 0-2 Failed") unless %w[ant bear cat].my_none? { |word| word.len
 
 # Testing `#my_map`
 raise("#my_map 0-1 Failed") unless (1..4).map { |i| i * i } == [1, 4, 9, 16]
+
