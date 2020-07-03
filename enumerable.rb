@@ -66,9 +66,8 @@ module ::Enumerable
     my_each do |x|
       if block_given?
         count += 1 if yield(x)
-      elsif x == item
-        count += 1
       else
+        count += 1
       end
     end
 
