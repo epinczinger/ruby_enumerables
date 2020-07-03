@@ -1,8 +1,5 @@
 # Custom Enumerable Methods
 module ::Enumerable
-  # Esteban: 3, 5, 7, 9, 11
-  # Daniel: 4, 6, 8, 10
-
   # Calls block with the item for each item in enum.
   def my_each
     return to_enum unless block_given?
@@ -32,7 +29,7 @@ module ::Enumerable
   # Passes each element of the collection to the given block.
   # The method returns true if the block never returns false or nil.
   def my_all?(&block)
-    my_each_with_index do |item, _index|
+    my_each do |item|
       return false if block.call(item) != true
     end
 
@@ -42,7 +39,7 @@ module ::Enumerable
   # Passes each element of the collection to the given block.
   # The method returns true if the block ever returns a value other than false or nil.
   def my_any?(&block)
-    my_each_with_index do |item, _index|
+    my_each do |item|
       return true if block.call(item) == true
     end
 
@@ -52,7 +49,7 @@ module ::Enumerable
   # Passes each element of the collection to the given block.
   # The method returns true if the block never returns true for all elements.
   def my_none?(&block)
-    my_each_with_index do |item, _index|
+    my_each do |item|
       return false if block.call(item) == true
     end
 
@@ -79,11 +76,27 @@ module ::Enumerable
 
   # Returns a new array with the results of running block once for every element in enum.
   def my_map(&block)
-    transformed =
-      my_each_with_index do |item, _index|
-        return block.call(item)
-      end
+    transformed = []
+    to_a.my_each do |item|
+      transformed << block.call(item)
+    end
 
     transformed
+  end
+
+  # Combines all elements of enum by applying a binary operation,
+  # specified by a block or a symbol that names a method or operator.
+  def my_inject
+    array = to_a
+
+    # Our Result Begins With The First Item Of The Array
+    accumulator = array.shift
+
+    array.my_each do |item|
+      # We Accumulate The Result Returned from The Block
+      accumulator = yield(accumulator, item)
+    end
+
+    accumulator
   end
 end
