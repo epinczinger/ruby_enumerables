@@ -1,5 +1,16 @@
 # Ruby Enumerables
 
+The goal of this project is to add new methods to the existing Enumerable module, a method that is identical to the next ones, but (obviously) does not use the original ones.
+
+Create #my_each
+Create #my_each_with_index 
+Create #my_select 
+Create #my_all? 
+Create #my_any?
+Create #my_none?
+Create #my_count
+Create #my_map
+Create #my_inject
 
 ## Run Debbugger
 
