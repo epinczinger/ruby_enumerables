@@ -47,7 +47,9 @@ raise("#my_count 0-1 Failed") unless [1, 2, 4, 2].my_count == 4
 # !
 
 # Testing `#my_map`
+add_proc = proc { |item| item + item }
 raise("#my_map 0-1 Failed") unless (1..4).my_map { |i| i * i } == [1, 4, 9, 16]
+raise("#my_map 0-2 Failed") unless [2, 4, 6].my_map(&add_proc) == [4, 8, 12]
 
 # !
 
