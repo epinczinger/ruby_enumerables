@@ -58,6 +58,21 @@ module ::Enumerable
     true
   end
 
+  def my_count(item = nil)
+    return size if item.nil? && !block_given?
+
+    count = 0
+    my_each do |x|
+      if block_given?
+        count += 1 if yield x
+      elsif x == item
+        count += 1
+      end
+    end
+
+    count
+  end
+
   # Returns a new array with the results of running block once for every element in enum.
   def my_map(&block)
     transformed =
