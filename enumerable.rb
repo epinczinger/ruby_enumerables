@@ -40,6 +40,14 @@ module ::Enumerable
     true
   end
 
+  def my_any?(&block)
+    my_each_with_index do |item, _index|
+      return true if block.call(item) == true
+    end
+
+    false
+  end
+
   # Passes each element of the collection to the given block.
   # The method returns true if the block never returns true for all elements.
   def my_none?(&block)
