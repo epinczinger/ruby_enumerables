@@ -56,3 +56,13 @@ raise("#my_inject 0-1 Failed") unless (5..10).my_inject { |sum, n| sum + n } == 
 unless %w[cat sheep bear].my_inject { |memo, word| memo.length > word.length ? memo : word } == "sheep"
   raise("#my_inject 0-2 Failed")
 end
+
+# !
+
+# Testing `#multiple_els`
+def multiply_els(array)
+  #  Multiplies all the elements of the array together
+  array.my_inject { |accumulator, current_item| accumulator * current_item }
+end
+
+raise("#multiply_els 0-1 Failed") unless multiply_els([2, 4, 5]) == 40
