@@ -68,6 +68,7 @@ module ::Enumerable
         count += 1 if yield(x)
       elsif x == item
         count += 1
+      else
       end
     end
 
