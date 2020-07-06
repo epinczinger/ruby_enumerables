@@ -68,12 +68,9 @@ module ::Enumerable
 
   # Passes each element of the collection to the given block.
   # The method returns true if the block never returns true for all elements.
-  def my_none?(&block)
-    my_each do |item|
-      return false if block.call(item) == true
-    end
-
-    true
+  def my_none?(argument = nil, &block)
+    # If `my_any?` True Then False Else True
+    my_any?(argument, &block) != true
   end
 
   # Returns the number of items in enum through enumeration.

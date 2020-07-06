@@ -56,6 +56,12 @@ raise("#my_any? 6 Failed") unless [].my_any? == false
 # Testing `#my_none?`
 raise("#my_none? 1 Failed") unless %w[ant bear cat].my_none? { |word| word.length == 5 } == true
 raise("#my_none? 2 Failed") unless %w[ant bear cat].my_none? { |word| word.length >= 4 } == false
+raise("#my_none? 3 Failed") unless %w[ant bear cat].none?(/d/) == true
+raise("#my_none? 4 Failed") unless [1, 3.14, 42].none?(::Float) == false
+raise("#my_none? 5 Failed") unless [].none? == true
+raise("#my_none? 6 Failed") unless [nil].none? == true
+raise("#my_none? 7 Failed") unless [nil, false].none? == true
+raise("#my_none? 8 Failed") unless [nil, false, true].none? == false
 
 # !
 
