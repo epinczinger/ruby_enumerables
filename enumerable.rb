@@ -89,13 +89,11 @@ module ::Enumerable
   end
 
   # Returns a new array with the results of running block once for every element in enum.
-  def my_map(&block)
+  def my_map()
     return to_enum unless block_given?
 
     transformed = []
-    to_a.my_each do |item|
-      transformed << block.call(item)
-    end
+    to_a.my_each { |item| transformed << (!proc.nil? ? proc.call(item) : yield(item)) }
 
     transformed
   end
