@@ -46,6 +46,10 @@ raise("#my_all? 7 Failed") unless [].my_all? == true
 # Testing `#my_any?`
 raise("#my_any? 1 Failed") unless %w[ant bear cat].my_any? { |word| word.length >= 4 } == true
 raise("#my_any? 2 Failed") unless %w[ant bear cat].my_any? { |word| word.length >= 5 } == false
+raise("#my_any? 3 Failed") unless %w[ant bear cat].my_any?(/d/) == false
+raise("#my_any? 4 Failed") unless [nil, true, 99].my_any?(::Integer) == true
+raise("#my_any? 5 Failed") unless [nil, true, 99].my_any? == true
+raise("#my_any? 6 Failed") unless [].my_any? == false
 
 # !
 

@@ -48,9 +48,19 @@ module ::Enumerable
 
   # Passes each element of the collection to the given block.
   # The method returns true if the block ever returns a value other than false or nil.
-  def my_any?(&block)
-    my_each do |item|
-      return true if block.call(item) == true
+  def my_any?(argument = nil)
+    if argument.class == ::Regexp
+      # Regular Expression
+      my_each { |item| return true if item.match(argument).nil? == false }
+    elsif argument.is_a?(::Class)
+      # Class
+      my_each { |item| return true if item.is_a?(argument) == true }
+    elsif block_given? == false && argument.nil?
+      # No Argument && No Block
+      my_each { |item| return true unless item.nil? == true }
+    else
+      # Default
+      my_each { |item| return true if item.nil? == false && yield(item) == true }
     end
 
     false
