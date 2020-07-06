@@ -90,6 +90,8 @@ module ::Enumerable
 
   # Returns a new array with the results of running block once for every element in enum.
   def my_map(&block)
+    return to_enum unless block_given?
+
     transformed = []
     to_a.my_each do |item|
       transformed << block.call(item)
