@@ -32,14 +32,20 @@ module ::Enumerable
   # Passes each element of the collection to the given block.
   # The method returns true if the block never returns false or nil.
   def my_all?(argument = nil)
-    # Regular Expression
-    if argument.class == Regexp
+    if argument.class == ::Regexp
+      # Regular Expression
       my_each do |item|
         return false if item.match(argument).nil? == false
       end
-    else
+    elsif argument.is_a?(::Class)
+      # Class
       my_each do |item|
-        return false if yield(item) != true
+        return false unless item.is_a?(argument) == true
+      end
+    else
+      # Default
+      my_each do |item|
+        return false unless yield(item) == true
       end
     end
 
