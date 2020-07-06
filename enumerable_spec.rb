@@ -38,8 +38,8 @@ raise("#my_all? 2 Failed") unless %w[ant bear cat].my_all? { |word| word.length 
 raise("#my_all? 3 Failed") unless (0..10).my_all? { |number| number < 100 } == true
 raise("#my_all? 4 Failed") unless %w[ant bear cat].my_all?(/t/) == false
 raise("#my_all? 4 Failed") unless [1, 2i, 3.14].my_all?(::Numeric) == true
-# raise("#my_all? 5 Failed") unless [nil, true, 99].my_all? == false
-# raise("#my_all? 5 Failed") unless [].my_all? == true
+raise("#my_all? 5 Failed") unless [nil, true, 99].my_all? == false
+raise("#my_all? 5 Failed") unless [].my_all? == true
 
 # !
 

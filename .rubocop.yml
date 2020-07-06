@@ -61,3 +61,5 @@ Lint/UselessAssignment:
   Enabled: false
 Style/StringHashKeys:
   Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
