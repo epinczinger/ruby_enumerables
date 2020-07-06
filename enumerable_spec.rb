@@ -16,10 +16,11 @@ raise("#my_each 0-3 Failed") unless my_each_hash == ["Jane Doe", "Jim Doe"]
 # !
 
 # Testing `#my_each_with_index`
-a2 = [9, 8, 7, 6, 5, 4, 3, 2, 1]
-b2 = {}
-a2.my_each_with_index { |item, index| b2[index] = item }
-unless b2 == { 0 => 9, 1 => 8, 2 => 7, 3 => 6, 4 => 5, 5 => 4, 6 => 3, 7 => 2, 8 => 1 }
+my_each_with_index_hash = {}
+[9, 8, 7, 6, 5, 4, 3, 2, 1].my_each_with_index do |item, index|
+  my_each_with_index_hash[index] = item
+end
+unless my_each_with_index_hash == { 0 => 9, 1 => 8, 2 => 7, 3 => 6, 4 => 5, 5 => 4, 6 => 3, 7 => 2, 8 => 1 }
   raise("#my_each_with_index 0-1 Failed")
 end
 

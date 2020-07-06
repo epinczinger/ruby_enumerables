@@ -3,16 +3,18 @@ module ::Enumerable
   # Calls block with the item for each item in enum.
   def my_each
     return to_enum unless block_given?
-
     size.times { |n| yield(to_a[n]) }
     self
   end
 
   # Loops, Calling The Block With Item And Index
   def my_each_with_index(&block)
-    for index in 0...count
-      block.call(self[index], index)
-    end
+    return to_enum unless block_given?
+
+    # Starting At `-1` So First Time Incremented Will Be 0
+    index = -1
+    size.times { |n| yield(to_a[n], index += 1) }
+    self
   end
 
   # Returns an array containing all elements of enum for which the given block returns a true value.
