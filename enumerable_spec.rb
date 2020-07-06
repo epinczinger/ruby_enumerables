@@ -57,6 +57,8 @@ raise("#my_none? 2 Failed") unless %w[ant bear cat].my_none? { |word| word.lengt
 
 # Testing `#my_count`
 raise("#my_count 1 Failed") unless [1, 2, 4, 2].my_count == 4
+raise("#my_count 1 Failed") unless [1, 2, 4, 2].my_count(2) == 2
+raise("#my_count 1 Failed") unless [1, 2, 4, 2].my_count { |x| x%2==0 } == 3
 
 # !
 

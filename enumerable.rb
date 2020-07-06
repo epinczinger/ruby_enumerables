@@ -69,19 +69,16 @@ module ::Enumerable
   # Returns the number of items in enum through enumeration.
   # If an argument is given, the number of items in enum that are equal to item are counted.
   # If a block is given, it counts the number of elements yielding a true value.
-  def my_count(item = nil)
-    return size if item.nil? && !block_given?
+  def my_count(*args)
+    @var = to_a
+    arr = []
 
-    count = 0
-    my_each do |x|
-      if block_given?
-        count += 1 if yield(x)
-      else
-        count += 1
-      end
+    if block_given?
+      my_each { |n| arr << n if yield n }
+      arr.length
+    else
+      !args.empty? ? @var.length - (to_a - args.to_a).length : to_a.length
     end
-
-    count
   end
 
   # Returns a new array with the results of running block once for every element in enum.
