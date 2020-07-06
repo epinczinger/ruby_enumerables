@@ -6,9 +6,13 @@ b1 = []
 a1.my_each { |item| b1 << item }
 raise("#my_each 0-1 Failed") unless a1 == b1
 
-my_each_test_2 = []
-(1..4).my_each { |item| my_each_test_2 << item - 1 }
-raise("#my_each 0-2 Failed") unless my_each_test_2 == [0, 1, 2, 3]
+my_each_test_range = []
+(1..4).my_each { |item| my_each_test_range << item - 1 }
+raise("#my_each 0-2 Failed") unless my_each_test_range == [0, 1, 2, 3]
+
+my_each_test_hash = []
+{ "Jane Doe" => 10, "Jim Doe" => 6 }.my_each { |item| my_each_test_hash << item[0] }
+raise("#my_each 0-3 Failed") unless my_each_test_hash == ["Jane Doe", "Jim Doe"]
 
 # !
 
