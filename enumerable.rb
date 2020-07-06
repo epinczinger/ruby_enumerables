@@ -100,15 +100,27 @@ module ::Enumerable
 
   # Combines all elements of enum by applying a binary operation,
   # specified by a block or a symbol that names a method or operator.
-  def my_inject
-    array = to_a
+  def my_inject(*arguments)
+    array = to_a.clone
 
-    # Our Result Begins With The First Item Of The Array
-    accumulator = array.shift
+    # Gather Symbol If No Block is Provided
+    symbol = arguments.pop unless block_given?
 
-    array.my_each do |item|
-      # We Accumulate The Result Returned from The Block
-      accumulator = yield(accumulator, item)
+    # Our Result Begins With The Suplied Argument Or First Item Of The Array
+    accumulator = arguments.empty? == false ? arguments.shift : array.shift
+
+    if symbol.class == ::Symbol
+      # Handle Symbol
+      array.my_each do |item|
+        # We Accumulate The Result Returned From Applying The Symbol To Accumulator And Current Item
+        accumulator = accumulator.__send__(symbol, item)
+      end
+    else
+      # Default
+      array.my_each do |item|
+        # We Accumulate The Result Returned From The Block
+        accumulator = yield(accumulator, item)
+      end
     end
 
     accumulator

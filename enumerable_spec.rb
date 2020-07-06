@@ -80,10 +80,13 @@ raise("#my_map 2 Failed") unless [2, 4, 6].my_map(&add_proc) == [4, 8, 12]
 # !
 
 # Testing `#my_inject`
-raise("#my_inject 1 Failed") unless (5..10).my_inject { |sum, n| sum + n } == 45
+raise("#my_inject 1 Failed") unless (5..10).my_inject(:+) == 45
+raise("#my_inject 2 Failed") unless (5..10).my_inject { |sum, n| sum + n } == 45
 unless %w[cat sheep bear].my_inject { |memo, word| memo.length > word.length ? memo : word } == "sheep"
-  raise("#my_inject 2 Failed")
+  raise("#my_inject 3 Failed")
 end
+raise("#my_inject 4 Failed") unless (5..10).my_inject(1, :*) == 151_200
+raise("#my_inject 5 Failed") unless (5..10).my_inject(1) { |product, n| product * n } == 151_200
 
 # !
 
