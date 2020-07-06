@@ -37,9 +37,9 @@ raise("#my_all? 1 Failed") unless %w[ant bear cat].my_all? { |word| word.length 
 raise("#my_all? 2 Failed") unless %w[ant bear cat].my_all? { |word| word.length >= 4 } == false
 raise("#my_all? 3 Failed") unless (0..10).my_all? { |number| number < 100 } == true
 raise("#my_all? 4 Failed") unless %w[ant bear cat].my_all?(/t/) == false
-raise("#my_all? 4 Failed") unless [1, 2i, 3.14].my_all?(::Numeric) == true
-raise("#my_all? 5 Failed") unless [nil, true, 99].my_all? == false
-raise("#my_all? 5 Failed") unless [].my_all? == true
+raise("#my_all? 5 Failed") unless [1, 2i, 3.14].my_all?(::Numeric) == true
+raise("#my_all? 6 Failed") unless [nil, true, 99].my_all? == false
+raise("#my_all? 7 Failed") unless [].my_all? == true
 
 # !
 
@@ -57,8 +57,8 @@ raise("#my_none? 2 Failed") unless %w[ant bear cat].my_none? { |word| word.lengt
 
 # Testing `#my_count`
 raise("#my_count 1 Failed") unless [1, 2, 4, 2].my_count == 4
-raise("#my_count 1 Failed") unless [1, 2, 4, 2].my_count(2) == 2
-raise("#my_count 1 Failed") unless [1, 2, 4, 2].my_count(&:even?) == 3
+raise("#my_count 2 Failed") unless [1, 2, 4, 2].my_count(2) == 2
+raise("#my_count 3 Failed") unless [1, 2, 4, 2].my_count(&:even?) == 3
 
 # !
 
