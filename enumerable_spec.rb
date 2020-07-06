@@ -28,6 +28,7 @@ end
 
 # Testing `my_select`
 raise("#my_select 0-1 Failed") unless [1, 2, 3, 4, 5].my_select(&:even?) == [2, 4]
+raise("#my_select 0-2 Failed") unless (0..10).my_select(&:even?) == [0, 2, 4, 6, 8, 10]
 
 # !
 
