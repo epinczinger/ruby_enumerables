@@ -34,19 +34,13 @@ module ::Enumerable
   def my_all?(argument = nil)
     if argument.class == ::Regexp
       # Regular Expression
-      my_each do |item|
-        return false if item.match(argument).nil? == false
-      end
+      my_each { |item| return false if item.match(argument).nil? == false }
     elsif argument.is_a?(::Class)
       # Class
-      my_each do |item|
-        return false unless item.is_a?(argument) == true
-      end
+      my_each { |item| return false unless item.is_a?(argument) == true }
     else
       # Default
-      my_each do |item|
-        return false unless yield(item) == true
-      end
+      my_each { |item| return false unless item.nil? == false && yield(item) == true }
     end
 
     true
