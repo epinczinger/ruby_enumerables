@@ -12,7 +12,7 @@ Create #my_count
 Create #my_map
 Create #my_inject
 
-## Run Debbugger
+## Run Debugger
 
 `rdebug-ide enumerables.rb`
 
