@@ -55,7 +55,7 @@ module ::Enumerable
     elsif argument.is_a?(::Class)
       # Class
       my_each { |item| return true if item.is_a?(argument) == true }
-    elsif block_given? == false && argument.nil?
+    elsif !block_given? && argument.nil?
       # No Argument && No Block
       my_each { |item| return true unless item.nil? == true }
     else
