@@ -137,8 +137,8 @@ describe ::Enumerable do
 
     it "Any Items Are Truthy" do
       expect(
-        [nil, true, 99].my_none?
-      ).to(eq(true))
+        [nil, true].my_none?
+      ).to(eq(false))
     end
 
     it "Returns False If One Truthy Value" do
@@ -151,6 +151,52 @@ describe ::Enumerable do
       expect(
         [].my_none?
       ).to(eq(true))
+    end
+  end
+  describe '#my_count' do
+    it 'Counts elements in array' do
+      expect([1, 2, 4, 2].my_count).to(eq(4))
+    end
+
+    it 'Counts elements matching a pattern' do
+      expect([1, 2, 4, 2].my_count(2)).to(eq(2))
+    end
+
+    it 'Counts elements matching a proc' do
+      expect([1, 2, 4, 2].my_count(&:even?)).to(eq(3))
+    end
+  end
+
+  describe '#my_map' do
+    it 'Accepts a block' do
+      expect((1..4).my_map { |i| i**2 }).to(eq([1, 4, 9, 16]))
+    end
+
+    it 'Accepts a proc' do
+      add_proc = proc { |item| item += item }
+      expect([2, 4, 6].my_map(&add_proc)).to(eq([4, 8, 12]))
+    end
+  end
+
+  describe '#my_inject' do
+    it 'Accepts accepts a symbol' do
+      expect((5..10).my_inject(:+)).to(eq(45))
+    end
+
+    it 'Accepts a block' do
+      expect((5..10).my_inject { |sum, n| sum + n }).to(eq(45))
+    end
+
+    it 'Performs block actions on string array' do
+      expect(%w[cat sheep bear].my_inject { |memo, word| memo.length > word.length ? memo : word }).to(eq("sheep"))
+    end
+
+    it 'Performs multiplication based on symbol entered' do
+      expect((5..10).my_inject(1, :*)).to(eq(151_200))
+    end
+
+    it 'Performs multiplication bases on block' do
+      expect((5..10).my_inject(1) { |product, n| product * n }).to(eq(151_200))
     end
   end
 end
